@@ -1,26 +1,71 @@
 package com.example.busbookingapplication.users.customer;
 
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.FrameLayout;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.busbookingapplication.R;
+import com.example.busbookingapplication.users.customer.customerFragments.CusHomeFragment;
+import com.example.busbookingapplication.users.customer.customerFragments.CustomerMenuFragment;
+import com.example.busbookingapplication.users.customer.customerFragments.MyBooksFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class CustomerHome extends AppCompatActivity {
+
+    private BottomNavigationView bnav;
+    private FrameLayout frm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_customer_home);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+
+        bnav = findViewById(R.id.bnavcus);
+        frm = findViewById(R.id.frmcus);
+
+        loadFragment(new CusHomeFragment(), false);
+
+        bnav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                int itemId = item.getItemId();
+
+                if (itemId == R.id.mybooks) {
+                    loadFragment(new MyBooksFragment(), false);
+
+                } else if (itemId == R.id.home) {
+                    loadFragment(new CusHomeFragment(), false);
+
+                } else if (itemId == R.id.setting) {
+                    loadFragment(new CustomerMenuFragment(), false);
+
+                }
+                return true;
+            }
         });
+    }
+
+    private void loadFragment(Fragment fragment, boolean isAppInsialized) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        if (isAppInsialized) {
+            fragmentTransaction.add(R.id.frmcus, fragment);
+
+        } else {
+
+            fragmentTransaction.replace(R.id.frmcus, fragment);
+        }
+
+        fragmentTransaction.commit();
     }
 }
