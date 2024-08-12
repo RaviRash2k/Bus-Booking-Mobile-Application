@@ -5,7 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/main"
         android:background="@color/my_bckground"
-        tools:context=".users.customer.customerFragments.CusHomeFragment"
+        tools:context=".users.customer.customerFragments.customerHome.CusHomeFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">

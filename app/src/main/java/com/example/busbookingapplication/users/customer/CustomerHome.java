@@ -12,9 +12,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.busbookingapplication.R;
-import com.example.busbookingapplication.users.customer.customerFragments.CusHomeFragment;
-import com.example.busbookingapplication.users.customer.customerFragments.CustomerMenuFragment;
-import com.example.busbookingapplication.users.customer.customerFragments.MyBooksFragment;
+import com.example.busbookingapplication.users.customer.customerFragments.customerHome.CusHomeFragment;
+import com.example.busbookingapplication.users.customer.customerFragments.customerMenu.CustomerMenuFragment;
+import com.example.busbookingapplication.users.customer.customerFragments.customerBooks.MyBooksFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class CustomerHome extends AppCompatActivity {
