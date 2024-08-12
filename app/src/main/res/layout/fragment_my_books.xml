@@ -1,14 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".users.customer.customerFragments.MyBooksFragment">
+    android:orientation="vertical"
+    android:background="@color/my_bckground"
+    tools:context=".users.customer.customerFragments.customerBooks.MyBooksFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="70dp"
+        android:paddingBottom="15dp"
+        android:background="@color/main">
+        <TextView
+            android:id="@+id/myBooks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="my books"
+            android:layout_weight="1"
+            android:textColor="@color/text"
+            android:textSize="17sp"
+            android:textAlignment="center"/>
+        <TextView
+            android:id="@+id/passBooks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="past books"
+            android:layout_weight="1"
+            android:textColor="@color/text"
+            android:textSize="13sp"
+            android:textAlignment="center"/>
+    </LinearLayout>
 
-</FrameLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="7dp"
+            android:orientation="vertical"
+            android:layout_margin="7dp"
+            android:background="@drawable/menu_items_background">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="5dp"
+                android:orientation="vertical"
+                android:paddingHorizontal="10dp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycleViewForcustomerBooks"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

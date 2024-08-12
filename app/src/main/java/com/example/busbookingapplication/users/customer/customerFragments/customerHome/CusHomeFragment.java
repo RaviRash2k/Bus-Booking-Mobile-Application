@@ -1,4 +1,4 @@
-package com.example.busbookingapplication.users.customer.customerFragments;
+package com.example.busbookingapplication.users.customer.customerFragments.customerHome;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
