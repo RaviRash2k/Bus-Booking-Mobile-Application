@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homeRouteManager"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="home"
+        android:icon="@drawable/baseline_home_24"/>
+    <item
+        android:id="@+id/timeTable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="time table"
+        android:icon="@drawable/baseline_directions_bus_24"/>
+    <item
+        android:id="@+id/setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="menu"
+        android:icon="@drawable/baseline_menu_24"/>
+
+</menu>

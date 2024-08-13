@@ -39,10 +39,10 @@ public class CustomerHome extends AppCompatActivity {
 
                 int itemId = item.getItemId();
 
-                if (itemId == R.id.mybooks) {
+                if (itemId == R.id.timeTable) {
                     loadFragment(new MyBooksFragment(), false);
 
-                } else if (itemId == R.id.home) {
+                } else if (itemId == R.id.homeRouteManager) {
                     loadFragment(new CusHomeFragment(), false);
 
                 } else if (itemId == R.id.setting) {
