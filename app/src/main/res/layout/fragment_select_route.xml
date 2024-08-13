@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/my_bckground"
+    tools:context=".users.routeManager.routeManagerFragment.TimeTableManage.SelectRoute">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="60dp"
+        android:paddingBottom="10dp"
+        android:background="@color/main">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginHorizontal="20dp"
+            android:background="@drawable/menu_items_background">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:src="@drawable/iconsearch"/>
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:layout_weight="1"
+                android:hint="Enter Departure"
+                android:background="@color/transparent"
+                android:textColor="@color/dark_text"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/routeList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/my_bckground"
+                android:padding="7dp"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="15dp"
+                android:layout_gravity="center"
+                android:background="@drawable/menu_items_background">
+                <EditText
+                    android:id="@+id/addRoute"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:paddingStart="10dp"
+                    android:hint="add new route"
+                    android:background="@color/transparent"/>
+                <ImageButton
+                    android:id="@+id/addRouteButton"
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:background="@color/transparent"
+                    android:layout_gravity="center"
+                    android:src="@drawable/baseline_add_circle_24"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

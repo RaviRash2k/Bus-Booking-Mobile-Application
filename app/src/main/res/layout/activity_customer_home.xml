@@ -23,5 +23,4 @@
             app:itemTextColor="@color/text"
             app:menu="@menu/customer_nav"/>
 
-
     </LinearLayout>

@@ -16,6 +16,9 @@
         android:theme="@style/Theme.BusBookingApplication"
         tools:targetApi="31">
         <activity
+            android:name=".users.routeManager.routeManagerFragment.TimeTableManage.UpdateTimeTable"
+            android:exported="false" />
+        <activity
             android:name=".users.customer.customerFragments.customerMenu.othersOfMenu.CustomerHelp"
             android:exported="false" />
         <activity
