@@ -37,7 +37,6 @@ public class CusHomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_cus_home, container, false);
         time = rootView.findViewById(R.id.time);
 
@@ -46,7 +45,7 @@ public class CusHomeFragment extends Fragment {
             @Override
             public void run() {
                 updateTime();
-                handler.postDelayed(this, 1000); // Update every 1 second
+                handler.postDelayed(this, 1000);
             }
         });
 
