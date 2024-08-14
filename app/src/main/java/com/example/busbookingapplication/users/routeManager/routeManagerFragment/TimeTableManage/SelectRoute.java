@@ -14,6 +14,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,12 +32,13 @@ import java.util.ArrayList;
 
 public class SelectRoute extends Fragment {
 
-    TextView addRoute;
+    TextView addRoute, hide;
     ImageButton addRouteButton;
     DatabaseReference DB = FirebaseDatabase.getInstance().getReference().child("Route");
     RecyclerView routeList;
     SelectRouteAdapter myAdapter;
     ArrayList<SelectRouteModel> list;
+    EditText searchRoute;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,6 +55,10 @@ public class SelectRoute extends Fragment {
         routeList.setAdapter(myAdapter);
 
         fetchDataFromDatabase();
+
+        //search
+        searchRoute = rootView.findViewById(R.id.searchRoute);
+        hide = rootView.findViewById(R.id.hide);
 
         //Add new route
         addRoute = rootView.findViewById(R.id.addRoute);
@@ -83,6 +90,7 @@ public class SelectRoute extends Fragment {
 
                                             DB.child(route).setValue(route);
                                             Toast.makeText(getContext(), "Route added", Toast.LENGTH_SHORT).show();
+                                            addRoute.setText("");
                                         }
                                     });
                                     builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -112,12 +120,30 @@ public class SelectRoute extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 list.clear();
+
+                //searchRoute
+                searchRoute.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                    @Override
+                    public boolean onEditorAction(TextView v, int actionId, android.view.KeyEvent event) {
+                        if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_GO) {
+
+                            search();
+
+                            return true;
+                        }
+                        return false;
+                    }
+                });
+
                 for (DataSnapshot itemSnapshot : snapshot.getChildren()) {
 
                     String route = itemSnapshot.getKey();
 
                     SelectRouteModel mainModel = new SelectRouteModel();
                     mainModel.setRoute(route);
+
+                    hide.setVisibility(View.GONE);
+                    routeList.setVisibility(View.VISIBLE);
 
                     list.add(mainModel);
                 }
@@ -126,8 +152,50 @@ public class SelectRoute extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.e("AllcarsFragment", "Database error: " + error.getMessage());
+                Log.e("Route", "Database error: " + error.getMessage());
             }
         });
+    }
+
+    public void search(){
+
+                String search = searchRoute.getText().toString();
+                DB.orderByKey().startAt(search).endAt(search + "\uf8ff").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        list.clear();
+
+                        if(search.isEmpty()){
+                            fetchDataFromDatabase();
+                        }else{
+                            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+
+                                String route = snapshot.getKey();
+
+                                SelectRouteModel mainModel = new SelectRouteModel();
+                                mainModel.setRoute(route);
+
+                                list.add(mainModel);
+                            }
+
+                            myAdapter.notifyDataSetChanged();
+                        }
+
+                        if (list.isEmpty()) {
+                            hide.setVisibility(View.VISIBLE);
+                            routeList.setVisibility(View.GONE);
+
+                            hide.setText("No results found for \"" + search +"\"");
+
+                        } else {
+                            hide.setVisibility(View.GONE);
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
     }
 }

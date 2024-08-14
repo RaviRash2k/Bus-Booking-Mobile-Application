@@ -27,11 +27,13 @@
                 android:layout_height="25dp"
                 android:src="@drawable/iconsearch"/>
             <EditText
+                android:id="@+id/searchRoute"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:inputType="text"
                 android:layout_weight="1"
                 android:hint="Enter Departure"
+                android:textColorHint="@color/hint_text"
                 android:background="@color/transparent"
                 android:textColor="@color/dark_text"/>
         </LinearLayout>
@@ -50,6 +52,21 @@
                 android:layout_height="match_parent"
                 android:background="@color/my_bckground"
                 android:padding="7dp"/>
+
+<!--            <ImageView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:src="@drawable/on_the_way_cuate"/>-->
+
+            <TextView
+                android:id="@+id/hide"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="18sp"
+                android:textColor="@color/dark_text"
+                android:textAlignment="center"
+                android:layout_marginTop="10dp"
+                android:visibility="gone"/>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
@@ -63,6 +80,8 @@
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:paddingStart="10dp"
+                    android:textColor="@color/dark_text"
+                    android:textColorHint="@color/hint_text"
                     android:hint="add new route"
                     android:background="@color/transparent"/>
                 <ImageButton
