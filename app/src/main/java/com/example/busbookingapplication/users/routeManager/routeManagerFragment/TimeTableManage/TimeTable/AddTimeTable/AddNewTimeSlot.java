@@ -23,6 +23,8 @@ import com.example.busbookingapplication.registerAndLogin.register.RegisterActiv
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 
 public class AddNewTimeSlot extends Fragment {
@@ -96,6 +98,7 @@ public class AddNewTimeSlot extends Fragment {
             @Override
             public void onClick(View v) {
 
+                //get entered values
                 busNo = rootView.findViewById(R.id.busNo);
                 String enteredBus = busNo.getText().toString();
 
@@ -108,9 +111,9 @@ public class AddNewTimeSlot extends Fragment {
 
                 String end = endTime.getText().toString();
 
-                if(enteredBus.isEmpty() || enteredToLocation.isEmpty() || date.isEmpty() || start.isEmpty() || end.isEmpty()){
-
+                if(enteredBus.isEmpty() || enteredToLocation.isEmpty() || date.isEmpty() || start.isEmpty() || end.isEmpty()) {
                     Toast.makeText(getContext(), "Fill all fields", Toast.LENGTH_SHORT).show();
+
                 }else{
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
@@ -171,18 +174,20 @@ public class AddNewTimeSlot extends Fragment {
     }
 
     public void setDate(){
-        // Show the DatePickerDialog
         DatePickerDialog datePickerDialog = new DatePickerDialog(
                 requireContext(),
                 new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+
                         // Handle the selected date
                         String selectedDate = dayOfMonth + " . " + (monthOfYear + 1) + " . " + year;
                         turnDay.setText(selectedDate);
                     }
                 },
                 year, month, day);
+
+        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
 
         datePickerDialog.show();
     }
