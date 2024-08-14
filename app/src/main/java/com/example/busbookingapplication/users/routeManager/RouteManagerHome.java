@@ -19,6 +19,7 @@ import com.example.busbookingapplication.users.customer.customerFragments.custom
 import com.example.busbookingapplication.users.customer.customerFragments.customerHome.CusHomeFragment;
 import com.example.busbookingapplication.users.customer.customerFragments.customerMenu.CustomerMenuFragment;
 import com.example.busbookingapplication.users.routeManager.routeManagerFragment.RouteManagerHome.RouteManagerHomeFragment;
+import com.example.busbookingapplication.users.routeManager.routeManagerFragment.RouteManagerMenu.RouteManagerMenuFragment;
 import com.example.busbookingapplication.users.routeManager.routeManagerFragment.TimeTableManage.SelectRoute;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -50,8 +51,8 @@ public class RouteManagerHome extends AppCompatActivity {
                 } else if (itemId == R.id.homeRouteManager) {
                     loadFragment(new RouteManagerHomeFragment(), false);
 
-                } else if (itemId == R.id.setting) {
-                    loadFragment(new RouteManagerHomeFragment(), false);
+                } else if (itemId == R.id.menu) {
+                    loadFragment(new RouteManagerMenuFragment(), false);
 
                 }
                 return true;
