@@ -1,14 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/my_bckground"
     tools:context=".users.routeManager.routeManagerFragment.TimeTableManage.TimeTable.ViewTimeTable.ViewTimes">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-</FrameLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/white"
+                android:padding="15dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal"
+                    android:background="@drawable/edit_text_background"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:src="@drawable/baseline_location_on_24"/>
+                    <TextView
+                        android:id="@+id/startLocation"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:textColor="@color/dark_text"
+                        android:textSize="17sp"
+                        android:paddingStart="12dp"
+                        android:gravity="center_vertical"
+                        android:text="FROM"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/daySet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_background"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginBottom="3dp">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:src="@drawable/baseline_calendar_month_24"
+                        android:textColor="@color/dark_text" />
+                    <TextView
+                        android:id="@+id/userSelectedDay"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:textColor="@color/dark_text"
+                        android:textSize="17sp"
+                        android:paddingStart="12dp"
+                        android:hint="Select day"
+                        android:gravity="center_vertical"
+                        android:textColorHint="@color/hint_text"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@drawable/button_background"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp">
+                    <Button
+                        android:id="@+id/go"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/main"
+                        android:text="go"
+                        android:textColor="@color/text"/>
+                </LinearLayout>
+            </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/timeTable"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/my_bckground"
+                    android:padding="7dp"/>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
