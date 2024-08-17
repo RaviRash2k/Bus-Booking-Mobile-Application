@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -30,7 +31,8 @@ import java.util.Calendar;
 public class AddNewTimeSlot extends Fragment {
 
     private String route;
-    TextView turnDay, startTime, endTime, fromLocation, busNo, toLocation;
+    TextView turnDay, startTime, endTime, fromLocation;
+    EditText busNo, toLocation, ticketPrice;
     LinearLayout daySet, startTimeSet, endTimeSet;
     Button add;
 
@@ -54,9 +56,12 @@ public class AddNewTimeSlot extends Fragment {
         if (getArguments() != null) {
             route = getArguments().getString("route");
         }
-        //set from
+        //set from location
         fromLocation = rootView.findViewById(R.id.fromLocation);
         fromLocation.setText(route);
+
+        //ticket price
+        ticketPrice = rootView.findViewById(R.id.ticketPrice);
 
         //assign selected date and time text views
         turnDay = rootView.findViewById(R.id.turnDay);
@@ -103,7 +108,7 @@ public class AddNewTimeSlot extends Fragment {
                 String enteredBus = busNo.getText().toString();
 
                 toLocation = rootView.findViewById(R.id.toLocation);
-                String enteredToLocation = busNo.getText().toString();
+                String enteredToLocation = toLocation.getText().toString();
 
                 String date = turnDay.getText().toString();
 
@@ -111,7 +116,9 @@ public class AddNewTimeSlot extends Fragment {
 
                 String end = endTime.getText().toString();
 
-                if(enteredBus.isEmpty() || enteredToLocation.isEmpty() || date.isEmpty() || start.isEmpty() || end.isEmpty()) {
+                String ticketCost = ticketPrice.getText().toString();
+
+                if(enteredBus.isEmpty() || enteredToLocation.isEmpty() || date.isEmpty() || start.isEmpty() || end.isEmpty() || ticketCost.isEmpty()) {
                     Toast.makeText(getContext(), "Fill all fields", Toast.LENGTH_SHORT).show();
 
                 }else{
@@ -137,6 +144,7 @@ public class AddNewTimeSlot extends Fragment {
                             DB.child(route).child(key).child("Start Location").setValue(route);
                             DB.child(route).child(key).child("Date").setValue(date);
                             DB.child(route).child(key).child("Start Time").setValue(start);
+                            DB.child(route).child(key).child("Ticket Price").setValue(ticketCost);
                             DB.child(route).child(key).child("End Time").setValue(end);
 
                             DB.child(route).child(key).child("End Time").setValue(end).addOnCompleteListener(task -> {
@@ -152,6 +160,8 @@ public class AddNewTimeSlot extends Fragment {
                                     turnDay.setText("");
                                     startTime.setText("");
                                     endTime.setText("");
+                                    ticketPrice.setText("");
+
                                 } else {
                                     Toast.makeText(getContext(), "Failed to add time slot", Toast.LENGTH_SHORT).show();
                                 }

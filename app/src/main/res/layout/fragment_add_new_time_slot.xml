@@ -100,23 +100,23 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/edit_text_background"
-            android:orientation="vertical"
-            android:padding="12dp"
-            android:layout_marginBottom="8dp">
-            <TextView
-                android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="Travel Date"
-                android:textColor="@color/dark_text" />
+                android:layout_marginStart="10dp"
+                android:src="@drawable/baseline_calendar_month_24"/>
             <TextView
                 android:id="@+id/turnDay"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:textColor="@color/dark_text"
                 android:textSize="17sp"
-                android:layout_marginStart="15dp"
-                android:hint="Enter day"
+                android:paddingStart="12dp"
+                android:hint="Select day"
+                android:gravity="center_vertical"
                 android:textColorHint="@color/hint_text"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -179,17 +179,48 @@
                     android:textSize="17sp"
                     android:layout_marginStart="17dp" />
             </LinearLayout>
-
         </LinearLayout>
 
-        <Button
-            android:id="@+id/add"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/edit_text_background"
+            android:gravity="center_vertical">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/baseline_directions_bus_24" />
+            <EditText
+                android:id="@+id/ticketPrice"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:textColorHint="@color/hint_text"
+                android:textColor="@color/dark_text"
+                android:paddingStart="12dp"
+                android:textSize="17sp"
+                android:background="@color/transparent"
+                android:hint="Ticket Cost"/>
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="@color/main"
-            android:text="add to time table"
-            android:textColor="@color/text" />
+            android:orientation="horizontal"
+            android:background="@drawable/button_background"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp">
+            <Button
+                android:id="@+id/add"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/main"
+                android:text="add to time table"
+                android:textColor="@color/text" />
+        </LinearLayout>
 
     </LinearLayout>
 
