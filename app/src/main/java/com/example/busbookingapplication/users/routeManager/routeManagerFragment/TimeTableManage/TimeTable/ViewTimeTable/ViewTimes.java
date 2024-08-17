@@ -33,7 +33,7 @@ import java.util.Calendar;
 
 public class ViewTimes extends Fragment {
 
-    TextView startLocation, userSelectedDay;
+    TextView startLocation, userSelectedDay, noBusText;
     Button go;
     String route;
     DatabaseReference DB;
@@ -49,6 +49,8 @@ public class ViewTimes extends Fragment {
         startLocation = rootView.findViewById(R.id.startLocation);
         userSelectedDay = rootView.findViewById(R.id.userSelectedDay);
         go = rootView.findViewById(R.id.go);
+
+        noBusText = rootView.findViewById(R.id.noBusText);
 
         recyclerView = rootView.findViewById(R.id.timeTable);
         recyclerView.setHasFixedSize(true);
@@ -107,6 +109,7 @@ public class ViewTimes extends Fragment {
                         String startTime = itemSnapshot.child("Start Time").getValue(String.class);
                         String enterEndTime = itemSnapshot.child("End Time").getValue(String.class);
                         String enterTicketPrice = itemSnapshot.child("Ticket Price").getValue(String.class);
+                        String slotID = itemSnapshot.getKey();
 
                         TimeTableModel mainModel = new TimeTableModel();
                         mainModel.setStartLocation(startLocation);
@@ -115,11 +118,22 @@ public class ViewTimes extends Fragment {
                         mainModel.setDate(date);
                         mainModel.setStartTime(startTime);
                         mainModel.setEndTime(enterEndTime);
-                        mainModel.setEndTime(enterTicketPrice);
+                        mainModel.setTicketPrice(enterTicketPrice);
+                        mainModel.setSlotID(slotID);
 
                         list.add(mainModel);
                     }
                     myAdapter.notifyDataSetChanged();
+
+                    if (list.isEmpty()) {
+                        noBusText.setVisibility(View.VISIBLE);
+                        recyclerView.setVisibility(View.GONE);
+
+
+                    } else {
+                        recyclerView.setVisibility(View.VISIBLE);
+                        noBusText.setVisibility(View.GONE);
+                    }
                 }
 
                 @Override
@@ -130,6 +144,7 @@ public class ViewTimes extends Fragment {
 
         }else{
             DB.orderByChild("Date").equalTo(dateSelected).addValueEventListener(new ValueEventListener() {
+                @SuppressLint("NotifyDataSetChanged")
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -143,6 +158,7 @@ public class ViewTimes extends Fragment {
                         String startTime = itemSnapshot.child("Start Time").getValue(String.class);
                         String endTime = itemSnapshot.child("End Time").getValue(String.class);
                         String ticketPrice = itemSnapshot.child("Ticket Price").getValue(String.class);
+                        String slotID = itemSnapshot.getKey();
 
                         TimeTableModel mainModel = new TimeTableModel();
                         mainModel.setStartLocation(startLocation);
@@ -151,11 +167,22 @@ public class ViewTimes extends Fragment {
                         mainModel.setDate(date);
                         mainModel.setStartTime(startTime);
                         mainModel.setEndTime(endTime);
-                        mainModel.setEndTime(ticketPrice);
+                        mainModel.setTicketPrice(ticketPrice);
+                        mainModel.setSlotID(slotID);
 
                         list.add(mainModel);
                     }
                     myAdapter.notifyDataSetChanged();
+
+                    if (list.isEmpty()) {
+                        noBusText.setVisibility(View.VISIBLE);
+                        recyclerView.setVisibility(View.GONE);
+
+
+                    } else {
+                        recyclerView.setVisibility(View.VISIBLE);
+                        noBusText.setVisibility(View.GONE);
+                    }
                 }
 
                 @Override

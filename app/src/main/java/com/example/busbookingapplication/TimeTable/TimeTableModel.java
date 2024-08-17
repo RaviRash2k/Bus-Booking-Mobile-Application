@@ -2,7 +2,7 @@ package com.example.busbookingapplication.TimeTable;
 
 public class TimeTableModel {
 
-    String startLocation, endLocation, busNo, startTime, endTime, ticketPrice, date;
+    String startLocation, endLocation, busNo, startTime, endTime, ticketPrice, date, slotID;
 
     public String getStartLocation() {
         return startLocation;
@@ -58,5 +58,13 @@ public class TimeTableModel {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getSlotID() {
+        return slotID;
+    }
+
+    public void setSlotID(String slotID) {
+        this.slotID = slotID;
     }
 }

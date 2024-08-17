@@ -108,7 +108,7 @@ public class AddNewTimeSlot extends Fragment {
                 String enteredBus = busNo.getText().toString();
 
                 toLocation = rootView.findViewById(R.id.toLocation);
-                String enteredToLocation = busNo.getText().toString();
+                String enteredToLocation = toLocation.getText().toString();
 
                 String date = turnDay.getText().toString();
 
