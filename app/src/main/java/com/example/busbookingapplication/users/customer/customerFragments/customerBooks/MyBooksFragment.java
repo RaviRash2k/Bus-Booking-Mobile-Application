@@ -1,16 +1,12 @@
 package com.example.busbookingapplication.users.customer.customerFragments.customerBooks;
 
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.example.busbookingapplication.R;
-
 import java.util.Objects;
 
 public class MyBooksFragment extends Fragment {
@@ -23,13 +19,14 @@ public class MyBooksFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_my_books, container, false);
 
-        tab();
-
-        //tab changing text view's decoration
+        // Initialize the TextViews
         myBooks = rootView.findViewById(R.id.myBooks);
         passBooks = rootView.findViewById(R.id.passBooks);
 
-        //click my books button
+        // Set up the initial tab appearance
+        tab();
+
+        // Click "My Books" button
         myBooks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,7 +35,7 @@ public class MyBooksFragment extends Fragment {
             }
         });
 
-        //click past books button
+        // Click "Past Books" button
         passBooks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,19 +44,17 @@ public class MyBooksFragment extends Fragment {
             }
         });
 
-
         return rootView;
     }
 
-    public void tab(){
-
-        if(Objects.equals(tab, "myBooks")){
-            myBooks.setTextSize(17);
-            passBooks.setTextSize(13);
+    public void tab() {
+        if (Objects.equals(tab, "myBooks")) {
+            myBooks.setTextSize(17f);
+            passBooks.setTextSize(13f);
 
         } else if (Objects.equals(tab, "passBooks")) {
-            myBooks.setTextSize(13);
-            passBooks.setTextSize(17);
+            myBooks.setTextSize(13f);
+            passBooks.setTextSize(17f);
         }
     }
 }

@@ -100,14 +100,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:src="@drawable/baseline_location_on_24"/>
-                <EditText
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/routeSpinnerStart"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:textColorHint="@color/hint_text"
-                    android:textColor="@color/dark_text"
-                    android:layout_marginStart="12dp"
-                    android:background="@color/transparent"
-                    android:hint="FROM"/>
+                    android:spinnerMode="dropdown"
+                    android:layout_marginStart="12dp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -122,17 +120,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:src="@drawable/baseline_location_on_24"/>
-                <EditText
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/routeSpinner"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:textColorHint="@color/hint_text"
-                    android:textColor="@color/dark_text"
-                    android:layout_marginStart="12dp"
-                    android:background="@color/transparent"
-                    android:hint="TO"/>
-                </LinearLayout>
-
-
+                    android:spinnerMode="dropdown"
+                    android:layout_marginStart="12dp"/>
+            </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/travelDate"
@@ -189,6 +183,7 @@
                     </LinearLayout>
 
                     <Button
+                        android:id="@+id/searchBus"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"

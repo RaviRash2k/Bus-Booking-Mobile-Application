@@ -111,11 +111,8 @@ public class AddNewTimeSlot extends Fragment {
                 String enteredToLocation = toLocation.getText().toString();
 
                 String date = turnDay.getText().toString();
-
                 String start = startTime.getText().toString();
-
                 String end = endTime.getText().toString();
-
                 String ticketCost = ticketPrice.getText().toString();
 
                 if(enteredBus.isEmpty() || enteredToLocation.isEmpty() || date.isEmpty() || start.isEmpty() || end.isEmpty() || ticketCost.isEmpty()) {
@@ -145,6 +142,7 @@ public class AddNewTimeSlot extends Fragment {
                             DB.child(route).child(key).child("Date").setValue(date);
                             DB.child(route).child(key).child("Start Time").setValue(start);
                             DB.child(route).child(key).child("Ticket Price").setValue(ticketCost);
+                            DB.child(route).child(key).child("Available Seats").setValue("45");
                             DB.child(route).child(key).child("End Time").setValue(end);
 
                             DB.child(route).child(key).child("End Time").setValue(end).addOnCompleteListener(task -> {
