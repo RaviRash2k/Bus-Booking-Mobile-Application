@@ -53,11 +53,6 @@
                 android:background="@color/my_bckground"
                 android:padding="7dp"/>
 
-<!--            <ImageView-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:src="@drawable/on_the_way_cuate"/>-->
-
             <TextView
                 android:id="@+id/hide"
                 android:layout_width="match_parent"

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:gravity="center"
+    tools:context=".users.customer.customerFragments.customerHome.CustomerSearchedSlots.BookingTicket.BookingTicket">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="25dp"
+            android:background="@color/main">
+            <TextView
+                android:id="@+id/location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="location"
+                android:textColor="@color/text"
+                android:textSize="27sp"
+                android:textAlignment="center"/>
+            <TextView
+                android:id="@+id/bus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="bus"
+                android:textColor="@color/text"
+                android:textSize="20sp"
+                android:textAlignment="center"/>
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="date"
+                android:textColor="@color/text"
+                android:textSize="15sp"
+                android:textAlignment="center"
+                android:layout_marginBottom="23dp"/>
+        </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="420dp"
+                android:layout_marginBottom="20dp"
+                android:src="@drawable/seatsceme" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:text="Select seats count:"
+                    android:textColor="@color/dark_text"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:id="@+id/dec"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#D4D4D4"
+                    android:src="@drawable/arrow_left" />
+
+                <TextView
+                    android:id="@+id/seatCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp"
+                    android:text="1"
+                    android:textColor="@color/dark_text"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:id="@+id/inc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#D4D4D4"
+                    android:src="@drawable/arrow_right" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Select your Seats"
+                android:textColor="@color/dark_text"
+                android:textSize="15sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+                <Spinner
+                    android:id="@+id/seatSelectionSpinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="13dp"/>
+                <TextView
+                    android:id="@+id/selectedSeatsView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Selected Seats "
+                    android:textColor="@color/dark_text"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:gravity="center_vertical"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:text="Tickets Cost:"
+                    android:textColor="@color/dark_text"
+                    android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/ticketPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp"
+                    android:textColor="@color/dark_text"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:gravity="center_vertical"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:text="NIC:"
+                    android:textColor="@color/dark_text"
+                    android:textSize="15sp" />
+                <EditText
+                    android:id="@+id/nic"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginHorizontal="15dp"
+                    android:textColor="@color/dark_text"
+                    android:hint="Enter traveler's NIC"
+                    android:textSize="18sp"
+                    android:inputType="number"
+                    android:paddingStart="7dp"
+                    android:background="@color/transparent"/>
+            </LinearLayout>
+
+            <Button
+                    android:id="@+id/bookButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Book ticket"
+                    android:textSize="15sp"
+                    android:textColor="@color/text"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginBottom="5dp"
+                    android:backgroundTint="@color/main"/>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
