@@ -57,33 +57,19 @@ public class TimeTableAdapter extends RecyclerView.Adapter<TimeTableAdapter.Main
         holder.timeTableEnd.setText(model.getEndTime());
         holder.ticketPrice.setText(model.getTicketPrice());
 
-        //get user type
-        SharedPreferences prf = context.getSharedPreferences("CurrentUser", Context.MODE_PRIVATE);
-        String currentType = prf.getString("type", "");
-
-        //set button visibility
-        if(currentType.equals("routeManager")){
-            holder.deleteTimeSlot.setVisibility(View.VISIBLE);
-            holder.bookTicket.setVisibility(View.GONE);
-
-        } else if (currentType.equals("customer")) {
-            holder.bookTicket.setVisibility(View.VISIBLE);
-            holder.deleteTimeSlot.setVisibility(View.GONE);
-        }
-
         //click delete button
         holder.deleteTimeSlot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);  // Use the context directly
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setMessage("Are you sure you want to delete this time slot?");
 
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        ProgressDialog progressDialog = new ProgressDialog(context);  // Use the correct context
+                        ProgressDialog progressDialog = new ProgressDialog(context);
                         progressDialog.setMessage("Deleting time slot...");
                         progressDialog.setCancelable(false);
                         progressDialog.show();
@@ -124,7 +110,7 @@ public class TimeTableAdapter extends RecyclerView.Adapter<TimeTableAdapter.Main
     public static class MainViewHolder extends RecyclerView.ViewHolder {
 
         TextView timeTableDay, timeTableStart, timeTableEnd, ticketPrice, busRoute, bus;
-        Button deleteTimeSlot, bookTicket;
+        Button deleteTimeSlot;
 
         public MainViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -136,7 +122,6 @@ public class TimeTableAdapter extends RecyclerView.Adapter<TimeTableAdapter.Main
             busRoute = itemView.findViewById(R.id.busRoute);
             bus = itemView.findViewById(R.id.bus);
             deleteTimeSlot = itemView.findViewById(R.id.deleteTimeSlot);
-            bookTicket = itemView.findViewById(R.id.bookTicket);
         }
     }
 }

@@ -44,7 +44,7 @@
             android:padding="7dp"
             android:orientation="vertical"
             android:layout_margin="7dp"
-            android:background="@drawable/menu_items_background">
+            android:background="@color/my_bckground">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -59,6 +59,16 @@
                     android:id="@+id/recycleViewForcustomerBooks"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
+
+                <TextView
+                    android:id="@+id/noBookText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:text="No Bookings"
+                    android:textColor="@color/dark_text"
+                    android:textSize="14sp"
+                    android:visibility="gone"/>
 
             </LinearLayout>
         </LinearLayout>
