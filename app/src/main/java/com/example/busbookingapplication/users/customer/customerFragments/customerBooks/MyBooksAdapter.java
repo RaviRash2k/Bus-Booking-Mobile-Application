@@ -84,12 +84,6 @@ public class MyBooksAdapter extends RecyclerView.Adapter<MyBooksAdapter.MainView
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 progressDialog.dismiss();
-                                if (task.isSuccessful()) {
-
-
-                                } else {
-                                    Log.d("Firebase", "Entry deletion failed");
-                                }
                             }
                         });
                     }
