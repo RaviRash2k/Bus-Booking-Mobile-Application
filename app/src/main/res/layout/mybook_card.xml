@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingVertical="15dp"
+    android:paddingHorizontal="20dp"
+    android:background="@drawable/menu_items_background"
+    android:layout_marginHorizontal="15dp"
+    android:layout_marginVertical="10dp">
+
+            <TextView
+                android:id="@+id/route"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Galle - Colombo"
+                android:textAlignment="center"
+                android:textColor="@color/dark_text"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/ticketID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Galle - Colombo"
+                android:textAlignment="center"
+                android:textColor="@color/dark_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:textSize="15sp"
+                app:layout_constraintTop_toBottomOf="@+id/route" />
+
+    <LinearLayout
+        android:id="@+id/dlauout8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@+id/ticketID"
+        app:layout_constraintTop_toBottomOf="@+id/ticketID">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:text="Turn ID-"
+            android:textColor="@color/dark_text"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/turnID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="GalleGCColombo"
+            android:textColor="@color/dark_text"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/dlauout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@+id/dlauout8"
+        app:layout_constraintTop_toTopOf="@+id/dlauout8">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="Date-"
+            android:textColor="@color/dark_text"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="GalleGCColombo"
+            android:textColor="@color/dark_text"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/dlauout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@+id/dlauout"
+        app:layout_constraintTop_toBottomOf="@+id/dlauout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="Time-"
+            android:textColor="@color/dark_text"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="GalleGCColombo"
+            android:textColor="@color/dark_text"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/dlauout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@+id/dlauout1"
+        app:layout_constraintTop_toBottomOf="@+id/dlauout1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="Bus-"
+            android:textColor="@color/dark_text"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/bus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="GalleGCColombo"
+            android:textColor="@color/dark_text"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/dlauout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@+id/dlauout2"
+        app:layout_constraintTop_toBottomOf="@+id/dlauout2">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="Price-"
+            android:textColor="@color/dark_text"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="GalleGCColombo"
+            android:textColor="@color/dark_text"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/dlauout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@+id/dlauout3"
+        app:layout_constraintTop_toBottomOf="@+id/dlauout3">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:text="Seats-"
+            android:textColor="@color/dark_text"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/seats"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="GalleGCColombo"
+            android:textColor="@color/dark_text"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/canselTicket"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:backgroundTint="#701723"
+        android:text="Cansel"
+        android:textColor="@color/text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/dlauout4"
+        app:layout_constraintTop_toBottomOf="@+id/dlauout4" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

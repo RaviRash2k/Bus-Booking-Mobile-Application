@@ -1,5 +1,6 @@
 package com.example.busbookingapplication.users.customer.customerFragments.customerMenu;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,21 +13,30 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.busbookingapplication.R;
 import com.example.busbookingapplication.registerAndLogin.login.LoginActivity;
 
 public class CustomerMenuFragment extends Fragment {
 
+    TextView userName;
     LinearLayout cusLogout;
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_customer_setting, container, false);
 
-        //Logout of customer
+        //get user name and set for textView
+        SharedPreferences prf = requireContext().getSharedPreferences("CurrentUser", Context.MODE_PRIVATE);
+        String currentName = prf.getString("userName", "");
 
+        userName = rootView.findViewById(R.id.userName);
+        userName.setText(currentName);
+
+        //Logout of customer
         SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("CurrentUser", getContext().MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 

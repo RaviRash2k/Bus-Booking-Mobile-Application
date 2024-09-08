@@ -134,20 +134,10 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/bookTicket"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="book"
-            android:layout_marginTop="10dp"
-            android:visibility="gone"
-            android:textColor="@color/text"
-            android:backgroundTint="@color/main"/>
-        <Button
             android:id="@+id/deleteTimeSlot"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="delete"
-            android:visibility="gone"
             android:textColor="@color/text"
             android:layout_marginTop="10dp"
             android:backgroundTint="#701723"/>

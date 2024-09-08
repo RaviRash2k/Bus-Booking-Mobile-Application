@@ -296,6 +296,7 @@ public class BookingTicket extends AppCompatActivity {
         booksDB.child(route).child(key).child("Time").setValue(time);
         booksDB.child(route).child(key).child("Date").setValue(date);
         booksDB.child(route).child(key).child("Traveler NIC").setValue(userNIC);
+        booksDB.child(route).child(key).child("Status").setValue("pending");
     }
 
     public void updateAvailableSeats(){

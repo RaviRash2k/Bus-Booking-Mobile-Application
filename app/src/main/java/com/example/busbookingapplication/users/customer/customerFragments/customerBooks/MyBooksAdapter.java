@@ -1,17 +1,15 @@
-package com.example.busbookingapplication.TimeTable;
+package com.example.busbookingapplication.users.customer.customerFragments.customerBooks;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,7 +17,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.busbookingapplication.R;
-import com.example.busbookingapplication.users.routeManager.routeManagerFragment.TimeTableManage.UpdateTimeTable;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
@@ -27,61 +24,69 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-
-public class TimeTableAdapter extends RecyclerView.Adapter<TimeTableAdapter.MainViewHolder>{
+public class MyBooksAdapter extends RecyclerView.Adapter<MyBooksAdapter.MainViewHolder>{
 
     Context context;
-    ArrayList<TimeTableModel> list;
+    ArrayList<MyBooksModel> list;
 
-    public TimeTableAdapter(Context context, ArrayList<TimeTableModel> list) {
+    public MyBooksAdapter(Context context, ArrayList<MyBooksModel> list) {
         this.context = context;
         this.list = list;
     }
 
     @NonNull
     @Override
-    public TimeTableAdapter.MainViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.timetable_card, parent, false);
-        return new TimeTableAdapter.MainViewHolder(v);
+    public MyBooksAdapter.MainViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(context).inflate(R.layout.mybook_card, parent, false);
+        return new MyBooksAdapter.MainViewHolder(v);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(@NonNull TimeTableAdapter.MainViewHolder holder, int position) {
-        TimeTableModel model = list.get(position);
+    public void onBindViewHolder(@NonNull MyBooksAdapter.MainViewHolder holder, int position) {
+        MyBooksModel model = list.get(position);
 
         // Set text view details
-        holder.busRoute.setText(String.format("%s - %s", model.getStartLocation(), model.getEndLocation()));
-        holder.bus.setText(model.getBusNo());
-        holder.timeTableDay.setText(model.getDate());
-        holder.timeTableStart.setText(model.getStartTime());
-        holder.timeTableEnd.setText(model.getEndTime());
-        holder.ticketPrice.setText(model.getTicketPrice());
+        holder.route.setText(model.getRoute());
+        holder.ticketID.setText(model.getTicketID());
+        holder.bus.setText(model.getBus());
+        holder.date.setText(model.getDate());
+        holder.time.setText(model.getTime());
+        holder.price.setText(model.getPrice() + " LKR");
+        holder.seats.setText(model.getSeats());
+        holder.turnID.setText(model.getTurnID());
+
+        if("traveled".equals(model.getStatus())){
+            holder.canselTicket.setVisibility(View.GONE);
+        } else if ("pending".equals(model.getStatus())) {
+            holder.canselTicket.setVisibility(View.VISIBLE);
+        }
 
         //click delete button
-        holder.deleteTimeSlot.setOnClickListener(new View.OnClickListener() {
+        holder.canselTicket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setMessage("Are you sure you want to delete this time slot?");
+                builder.setMessage("Are you sure you want to cansel?");
 
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
                         ProgressDialog progressDialog = new ProgressDialog(context);
-                        progressDialog.setMessage("Deleting time slot...");
+                        progressDialog.setMessage("Cansel booking...");
                         progressDialog.setCancelable(false);
                         progressDialog.show();
 
-                        //delete slot
-                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Route");
-                        databaseReference.child(model.getStartLocation()).child(model.getSlotID()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Booked Tickets");
+                        databaseReference.child(model.getRoute()).child(model.getTicketID()).child("Status").setValue("canceled").addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 progressDialog.dismiss();
                                 if (task.isSuccessful()) {
-                                    Log.d("Firebase", "Entry deleted successfully");
+
+
                                 } else {
                                     Log.d("Firebase", "Entry deletion failed");
                                 }
@@ -109,20 +114,21 @@ public class TimeTableAdapter extends RecyclerView.Adapter<TimeTableAdapter.Main
 
     public static class MainViewHolder extends RecyclerView.ViewHolder {
 
-        TextView timeTableDay, timeTableStart, timeTableEnd, ticketPrice, busRoute, bus;
-        Button deleteTimeSlot;
+        TextView route, ticketID, date, time, price, bus, seats, turnID;
+        Button canselTicket;
 
         public MainViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            timeTableDay = itemView.findViewById(R.id.timeTableDay);
-            timeTableStart = itemView.findViewById(R.id.timeTableStart);
-            timeTableEnd = itemView.findViewById(R.id.timeTableEnd);
-            ticketPrice = itemView.findViewById(R.id.ticketPrice);
-            busRoute = itemView.findViewById(R.id.busRoute);
+            route = itemView.findViewById(R.id.route);
+            ticketID = itemView.findViewById(R.id.ticketID);
+            date = itemView.findViewById(R.id.date);
+            time = itemView.findViewById(R.id.time);
+            price = itemView.findViewById(R.id.price);
             bus = itemView.findViewById(R.id.bus);
-            deleteTimeSlot = itemView.findViewById(R.id.deleteTimeSlot);
+            seats = itemView.findViewById(R.id.seats);
+            turnID = itemView.findViewById(R.id.turnID);
+            canselTicket = itemView.findViewById(R.id.canselTicket);
         }
     }
 }
-
