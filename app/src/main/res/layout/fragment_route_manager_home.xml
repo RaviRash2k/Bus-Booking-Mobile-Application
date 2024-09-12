@@ -1,14 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".users.routeManager.routeManagerFragment.RouteManagerHome.RouteManagerHomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@color/main"
+        android:titleTextColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/busManage"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:text="Bus manage"
+        android:textColor="@color/text"
+        android:background="#3B0F80"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:layout_margin="12dp"/>
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="150dp"
+        android:text="Bus manage"
+        android:textColor="@color/text"
+        android:background="#3B0F80"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginBottom="12dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:text="Bus manage"
+        android:textColor="@color/text"
+        android:background="#3B0F80"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginBottom="12dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:text="Bus manage"
+        android:textColor="@color/text"
+        android:background="#3B0F80"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginBottom="12dp"/>
 
-</FrameLayout>
+</LinearLayout>

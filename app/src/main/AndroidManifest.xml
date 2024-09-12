@@ -16,6 +16,9 @@
         android:theme="@style/Theme.BusBookingApplication"
         tools:targetApi="31">
         <activity
+            android:name=".users.routeManager.routeManagerFragment.RouteManagerHome.BusManage.BusManage"
+            android:exported="false" />
+        <activity
             android:name=".users.customer.customerFragments.customerHome.CustomerSearchedSlots.BookingTicket.BookingTicket"
             android:exported="false" />
         <activity

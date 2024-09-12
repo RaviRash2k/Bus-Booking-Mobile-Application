@@ -18,6 +18,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.busbookingapplication.R;
 import com.example.busbookingapplication.registerAndLogin.login.LoginActivity;
+import com.example.busbookingapplication.users.routeManager.routeManagerFragment.RouteManagerHome.BusManage.BusManage;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -51,9 +52,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         DB = FirebaseDatabase.getInstance().getReference().child("Users");
 
-        String key = DB.push().getKey();
-
-
         //Register
         signup = findViewById(R.id.signup);
 
@@ -82,6 +80,9 @@ public class RegisterActivity extends AppCompatActivity {
 
                 if(name.isEmpty() || eml.isEmpty() || pass.isEmpty() || repass.isEmpty()){
                     Toast.makeText(RegisterActivity.this, "Fill all fields", Toast.LENGTH_SHORT).show();
+
+                }else if (password.length() < 8) {
+                    Toast.makeText(RegisterActivity.this, "Password must need 8 characters", Toast.LENGTH_SHORT).show();
 
                 }else if(!pass.equals(repass)){
                     Toast.makeText(RegisterActivity.this, "Password not matching", Toast.LENGTH_SHORT).show();
