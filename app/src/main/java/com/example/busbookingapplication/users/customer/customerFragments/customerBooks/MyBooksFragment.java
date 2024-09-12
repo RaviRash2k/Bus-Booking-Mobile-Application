@@ -96,6 +96,7 @@ public class MyBooksFragment extends Fragment {
     }
 
     private void fetchDataFromDatabase() {
+
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Booked Tickets");
 
         // Get current user name
@@ -136,7 +137,6 @@ public class MyBooksFragment extends Fragment {
                             // Retrieve seat array
                             DataSnapshot seatsSnapshot = bookingSnapshot.child("Seats");
                             if (seatsSnapshot.exists()) {
-
 
                                 List<String> seatList = new ArrayList<>();
 
