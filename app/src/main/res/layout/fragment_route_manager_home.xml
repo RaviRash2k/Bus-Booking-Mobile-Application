@@ -24,9 +24,10 @@
         android:gravity="center"
         android:layout_margin="12dp"/>
     <TextView
+        android:id="@+id/viewTicket"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:text="Bus manage"
+        android:text="View Ticket"
         android:textColor="@color/text"
         android:background="#3B0F80"
         android:textSize="20sp"
