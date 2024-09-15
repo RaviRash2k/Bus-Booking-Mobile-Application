@@ -176,7 +176,7 @@ public class BusManage extends AppCompatActivity {
 
     // Method to save the new bus to Firebase
     private void saveNewBus(String busID, String busNum, String email, String nic, String route, String password) {
-        DB.child(busID).child("Bus ID").setValue(busID);
+        DB.child(busID).child("UserName").setValue(busID);
         DB.child(busID).child("Bus Number").setValue(busNum);
         DB.child(busID).child("Email").setValue(email);
         DB.child(busID).child("NIC").setValue(nic);

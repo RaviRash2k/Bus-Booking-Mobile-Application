@@ -20,6 +20,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.busbookingapplication.R;
 import com.example.busbookingapplication.registerAndLogin.register.RegisterActivity;
 import com.example.busbookingapplication.users.busOwner.BusOwnerHome;
+import com.example.busbookingapplication.users.busOwner.ChangePassword.BusPasswordChange;
 import com.example.busbookingapplication.users.customer.CustomerHome;
 import com.example.busbookingapplication.users.routeManager.RouteManagerHome;
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     TextView toReg;
     String type;
     EditText userName, password;
-    DatabaseReference DB = FirebaseDatabase.getInstance().getReference().child("Users");;
+    DatabaseReference DB = FirebaseDatabase.getInstance().getReference().child("Users");
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
 
@@ -111,20 +112,45 @@ public class LoginActivity extends AppCompatActivity {
                                     String getType = userSnapshot.child("Type").getValue(String.class);
 
                                     if (pass != null && pass.equals(getPass)) {
-                                        editor.putString("userName", userName);
-                                        editor.putString("type", getType);
-                                        editor.putBoolean("logged", true);
-                                        editor.apply();
 
                                         if ("customer".equals(getType)) {
+
+                                            editor.putString("userName", userName);
+                                            editor.putString("type", getType);
+                                            editor.putBoolean("logged", true);
+                                            editor.apply();
+
                                             Toast.makeText(LoginActivity.this, "Successfully logged into Customer account", Toast.LENGTH_SHORT).show();
                                             startActivity(new Intent(LoginActivity.this, CustomerHome.class));
                                             finish();
                                         } else if ("busOwner".equals(getType)) {
-                                            Toast.makeText(LoginActivity.this, "Successfully logged into Bus Owner account", Toast.LENGTH_SHORT).show();
-                                            startActivity(new Intent(LoginActivity.this, BusOwnerHome.class));
-                                            finish();
+
+                                            boolean logged = userSnapshot.hasChild("Logged");
+
+                                            if(logged){
+                                                Intent intent = new Intent(LoginActivity.this, BusPasswordChange.class);
+                                                intent.putExtra("userKey", userName);
+                                                startActivity(intent);
+                                                finish();
+
+                                            }else{
+                                                editor.putString("userName", userName);
+                                                editor.putString("type", getType);
+                                                editor.putBoolean("logged", true);
+                                                editor.apply();
+
+                                                Toast.makeText(LoginActivity.this, "Successfully logged into Bus Owner account", Toast.LENGTH_SHORT).show();
+                                                startActivity(new Intent(LoginActivity.this, BusOwnerHome.class));
+                                                finish();
+                                            }
+
                                         } else if ("routeManager".equals(getType)) {
+
+                                            editor.putString("userName", userName);
+                                            editor.putString("type", getType);
+                                            editor.putBoolean("logged", true);
+                                            editor.apply();
+
                                             Toast.makeText(LoginActivity.this, "Successfully logged into route Manager account", Toast.LENGTH_SHORT).show();
                                             startActivity(new Intent(LoginActivity.this, RouteManagerHome.class));
                                             finish();

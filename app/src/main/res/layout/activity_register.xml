@@ -146,33 +146,6 @@
             android:textColorHint="@color/hint_text" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayout5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:orientation="horizontal"
-        android:padding="4dp"
-        app:layout_constraintStart_toStartOf="@+id/linearLayout4"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
-
-        <CheckBox
-            android:id="@+id/typeCustomer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Customer"
-            android:textColor="@color/dark_text" />
-
-        <CheckBox
-            android:id="@+id/typeBusOwner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:text="Bus Owner"
-            android:textColor="@color/dark_text" />
-
-    </LinearLayout>
-
     <Button
         android:id="@+id/signup"
         android:layout_width="match_parent"
@@ -184,8 +157,8 @@
         android:textColor="@color/text"
         android:textSize="19sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/linearLayout5"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout5" />
+        app:layout_constraintStart_toStartOf="@+id/linearLayout4"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
 
     <LinearLayout
         android:layout_width="match_parent"
