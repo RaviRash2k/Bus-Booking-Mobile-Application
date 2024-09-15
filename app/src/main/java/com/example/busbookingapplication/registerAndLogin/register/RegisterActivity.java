@@ -32,10 +32,8 @@ import com.google.firebase.database.ValueEventListener;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    CheckBox typeCustomer, typeBusOwner;
     Button signup;
     TextView toLog;
-    String type = "invalid";
     EditText userName, email, password, rePassword;
     DatabaseReference DB;
 
@@ -64,20 +62,6 @@ public class RegisterActivity extends AppCompatActivity {
                 String pass = password.getText().toString();
                 String repass = rePassword.getText().toString();
 
-                //check admin or cus
-                typeCustomer = findViewById(R.id.typeCustomer);
-                typeBusOwner = findViewById(R.id.typeBusOwner);
-
-                if (typeCustomer.isChecked() && typeBusOwner.isChecked()) {
-                    type = "invalid";
-                } else if(typeCustomer.isChecked()) {
-                    type = "customer";
-                } else if (typeBusOwner.isChecked()) {
-                    type = "busOwner";
-                }else{
-                    type = "invalid";
-                }
-
                 if(name.isEmpty() || eml.isEmpty() || pass.isEmpty() || repass.isEmpty()){
                     Toast.makeText(RegisterActivity.this, "Fill all fields", Toast.LENGTH_SHORT).show();
 
@@ -87,11 +71,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }else if(!pass.equals(repass)){
                     Toast.makeText(RegisterActivity.this, "Password not matching", Toast.LENGTH_SHORT).show();
 
-                }else if(type.equals("invalid")){
-                    Toast.makeText(RegisterActivity.this, "Invalid type", Toast.LENGTH_SHORT).show();
-
-                }
-                else{
+                }else{
                     DB.orderByKey().equalTo(name).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -104,7 +84,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     DB.child(name).child("UserName").setValue(name);
                                     DB.child(name).child("Password").setValue(pass);
                                     DB.child(name).child("Email").setValue(eml);
-                                    DB.child(name).child("Type").setValue(type);
+                                    DB.child(name).child("Type").setValue("customer");
 
                                     Toast.makeText(RegisterActivity.this, "Data Inserted", Toast.LENGTH_SHORT).show();
                                     Intent i = new Intent(getApplicationContext(), LoginActivity.class);
