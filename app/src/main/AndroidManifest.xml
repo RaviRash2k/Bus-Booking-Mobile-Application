@@ -16,6 +16,9 @@
         android:theme="@style/Theme.BusBookingApplication"
         tools:targetApi="31">
         <activity
+            android:name=".LostAndFound.LostAndFound"
+            android:exported="false" />
+        <activity
             android:name=".users.busOwner.BusFragments.BusTimeTable.BookedSeats.BookedSeats"
             android:exported="false" />
         <activity
