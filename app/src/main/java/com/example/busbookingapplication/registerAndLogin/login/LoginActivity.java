@@ -126,10 +126,12 @@ public class LoginActivity extends AppCompatActivity {
                                         } else if ("busOwner".equals(getType)) {
 
                                             boolean logged = userSnapshot.hasChild("Logged");
+                                            String busNumber = userSnapshot.child("Bus Number").getValue(String.class);
 
                                             if(logged){
                                                 Intent intent = new Intent(LoginActivity.this, BusPasswordChange.class);
                                                 intent.putExtra("userKey", userName);
+                                                intent.putExtra("bus", busNumber);
                                                 startActivity(intent);
                                                 finish();
 
@@ -137,6 +139,7 @@ public class LoginActivity extends AppCompatActivity {
                                                 editor.putString("userName", userName);
                                                 editor.putString("type", getType);
                                                 editor.putBoolean("logged", true);
+                                                editor.putString("busNo", busNumber);
                                                 editor.apply();
 
                                                 Toast.makeText(LoginActivity.this, "Successfully logged into Bus Owner account", Toast.LENGTH_SHORT).show();

@@ -1,63 +1,73 @@
 package com.example.busbookingapplication.users.busOwner;
 
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.view.MenuItem;
+import android.widget.FrameLayout;
 
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AlertDialog;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.busbookingapplication.R;
-import com.example.busbookingapplication.registerAndLogin.login.LoginActivity;
+import com.example.busbookingapplication.users.busOwner.BusFragments.BusHome.BusHomeFragment;
+import com.example.busbookingapplication.users.busOwner.BusFragments.BusMenu.BusMenuFragment;
+import com.example.busbookingapplication.users.busOwner.BusFragments.BusTimeTable.BusTimeTableFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class BusOwnerHome extends AppCompatActivity {
 
-    Button logout;
+    private BottomNavigationView bnav;
+    private FrameLayout frm;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_bus_owner);
 
-        logout = findViewById(R.id.logout);
+        bnav = findViewById(R.id.busOwner);
+        frm = findViewById(R.id.frmBus);
 
-        logout.setOnClickListener(new View.OnClickListener() {
+        loadFragment(new BusHomeFragment(), false);
+
+        bnav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
-                builder.setMessage("Are you sure logout ?");
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-                builder.setPositiveButton("logout", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                int itemId = item.getItemId();
 
-                        SharedPreferences sharedPreferences = BusOwnerHome.this.getSharedPreferences("CurrentUser", MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.clear();
-                        editor.apply();
+                if (itemId == R.id.busTimeTable) {
+                    loadFragment(new BusTimeTableFragment(), false);
 
-                        Intent i = new Intent(BusOwnerHome.this, LoginActivity.class);
-                        startActivity(i);
-                    }
-                });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
+                } else if (itemId == R.id.busHome) {
+                    loadFragment(new BusHomeFragment(), false);
 
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();
+                } else if (itemId == R.id.busMenu) {
+                    loadFragment(new BusMenuFragment(), false);
+
+                }
+                return true;
             }
         });
+    }
+
+    private void loadFragment(Fragment fragment, boolean isAppInsialized) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        if (isAppInsialized) {
+            fragmentTransaction.add(R.id.frmBus, fragment);
+
+        } else {
+
+            fragmentTransaction.replace(R.id.frmBus, fragment);
+        }
+
+        fragmentTransaction.commit();
     }
 }
