@@ -35,7 +35,8 @@ public class BusPasswordChange extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_bus_password_change);
+        super.setContentView(R.layout.activity_bus_password_change);
+
 
         currentPassword = findViewById(R.id.currentPassword);
         password = findViewById(R.id.password);
@@ -66,6 +67,7 @@ public class BusPasswordChange extends AppCompatActivity {
         String rePass = rePassword.getText().toString();
 
         String key = getIntent().getStringExtra("userKey");
+        String bus = getIntent().getStringExtra("bus");
 
         if (key == null) {
             Toast.makeText(this, "User key is missing", Toast.LENGTH_SHORT).show();
@@ -104,6 +106,7 @@ public class BusPasswordChange extends AppCompatActivity {
 
                                                 editor.putString("userName", key);
                                                 editor.putString("type", "busOwner");
+                                                editor.putString("busNo", bus);
                                                 editor.putBoolean("logged", true);
                                                 editor.apply();
 
