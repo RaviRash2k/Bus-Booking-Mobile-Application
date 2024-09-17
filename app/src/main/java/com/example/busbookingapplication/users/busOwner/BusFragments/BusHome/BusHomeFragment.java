@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.busbookingapplication.LostAndFound.LostAndFound;
 import com.example.busbookingapplication.R;
 import com.example.busbookingapplication.users.routeManager.routeManagerFragment.RouteManagerHome.ViewTicket.ViewTickets;
 
@@ -20,7 +21,7 @@ import java.util.Locale;
 public class BusHomeFragment extends Fragment {
 
     private TextView time, date;
-    Button viewTicket;
+    Button viewTicket, lost;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -32,13 +33,24 @@ public class BusHomeFragment extends Fragment {
 
         //Button
         viewTicket = rootView.findViewById(R.id.viewTicket);
+        lost = rootView.findViewById(R.id.lost);
 
         updateTimeAndDate();
 
+        //click view ticket button
         viewTicket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), ViewTickets.class);
+                startActivity(intent);
+            }
+        });
+
+        //click lost and found button
+        lost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), LostAndFound.class);
                 startActivity(intent);
             }
         });

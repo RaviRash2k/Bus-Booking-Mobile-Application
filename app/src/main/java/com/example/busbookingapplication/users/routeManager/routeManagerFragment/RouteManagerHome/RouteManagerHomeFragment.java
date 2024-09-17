@@ -10,13 +10,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.busbookingapplication.LostAndFound.LostAndFound;
 import com.example.busbookingapplication.R;
 import com.example.busbookingapplication.users.routeManager.routeManagerFragment.RouteManagerHome.BusManage.BusManage;
 import com.example.busbookingapplication.users.routeManager.routeManagerFragment.RouteManagerHome.ViewTicket.ViewTickets;
 
 public class RouteManagerHomeFragment extends Fragment {
 
-    TextView busManage, viewTicket;
+    TextView busManage, viewTicket, lof;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -38,6 +39,15 @@ public class RouteManagerHomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getContext(), ViewTickets.class));
+            }
+        });
+
+        //Lost and found
+        lof = rootView.findViewById(R.id.lof);
+        lof.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), LostAndFound.class));
             }
         });
 
