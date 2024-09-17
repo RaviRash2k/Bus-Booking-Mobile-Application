@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="#A9000000"
+    tools:context=".LostAndFound.Fragment.AddLostOrFindFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="20dp"
+        android:orientation="vertical"
+        android:background="@drawable/menu_items_background">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add new lost/found item"
+            android:textSize="19sp"
+            android:textColor="@color/dark_text"
+            android:textAlignment="center"
+            android:layout_marginBottom="19dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        android:background="@drawable/edit_text_background">
+        <EditText
+            android:id="@+id/message"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="What are you found / lost ?"
+            android:background="@color/transparent"
+            android:padding="8dp"
+            android:textSize="16sp"
+            android:inputType="textMultiLine"
+            android:textColor="@color/dark_text"
+            android:textColorHint="@color/hint_text"/>
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <CheckBox
+                android:id="@+id/lost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lost"
+                android:layout_marginEnd="10dp"
+                android:textColor="@color/dark_text"
+                android:textSize="15sp"/>
+            <CheckBox
+                android:id="@+id/found"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Found"
+                android:textColor="@color/dark_text"
+                android:textSize="15sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="12dp">
+            <Button
+                android:id="@+id/cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:layout_marginEnd="6dp"
+                android:textColor="@color/text"
+                android:backgroundTint="@color/hint_text"
+                android:text="cancel"/>
+            <Button
+                android:id="@+id/done"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:textColor="@color/text"
+                android:backgroundTint="@color/main"
+                android:text="done"/>
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</FrameLayout>
