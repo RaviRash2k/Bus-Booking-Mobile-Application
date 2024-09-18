@@ -2,6 +2,7 @@ package com.example.busbookingapplication.LostAndFound.Fragment.Comment;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.GestureDetector;
@@ -46,10 +47,10 @@ public class Comment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_comment, container, false);
 
-        // Initialize GestureDetector for swipe detection
+
         gestureDetector = new GestureDetectorCompat(getContext(), new SwipeGestureListener());
 
-        //RecyclerView setup
+        // RecyclerView setup
         commentList = rootView.findViewById(R.id.commentList);
         commentList.setHasFixedSize(true);
         commentList.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -58,13 +59,13 @@ public class Comment extends Fragment {
         myAdapter = new CommentAdapter(getContext(), list);
         commentList.setAdapter(myAdapter);
 
-        //EditText setup
+        // EditText setup
         typedComment = rootView.findViewById(R.id.typedComment);
 
-        //no comment TextView setup
+        // No comment TextView setup
         noComment = rootView.findViewById(R.id.noComment);
 
-        //send button setup
+        // Send button setup
         send = rootView.findViewById(R.id.send);
         send.setOnClickListener(v -> addComment());
 
@@ -74,7 +75,6 @@ public class Comment extends Fragment {
 
         loadComment();
 
-        // Attach OnTouchListener to root view to detect swipe gestures
         rootView.setOnTouchListener((v, event) -> {
             gestureDetector.onTouchEvent(event);
             return true;
@@ -83,7 +83,7 @@ public class Comment extends Fragment {
         return rootView;
     }
 
-    //add comment method
+    // Add comment method
     public void addComment() {
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("CurrentUser", MODE_PRIVATE);
         String userName = sharedPreferences.getString("userName", "");
@@ -100,9 +100,14 @@ public class Comment extends Fragment {
         }
     }
 
-    //load comments from Firebase
+    // Load comments from Firebase
     public void loadComment() {
         if (postId != null) {
+            // Get current user name and type
+            SharedPreferences prf = getContext().getSharedPreferences("CurrentUser", MODE_PRIVATE);
+            String currentName = prf.getString("userName", "");
+            String userType = prf.getString("type", "");
+
             DB.child(postId).child("comment").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -116,6 +121,11 @@ public class Comment extends Fragment {
                         CommentModel mainModel = new CommentModel();
                         mainModel.setComment(comment);
                         mainModel.setUserName(user);
+                        mainModel.setId(postId);
+
+                        if (currentName.equals(user) || userType.equals("routeManager")) {
+                            mainModel.setDelete(true);
+                        }
 
                         list.add(mainModel);
                     }
@@ -138,7 +148,6 @@ public class Comment extends Fragment {
         }
     }
 
-    // Custom gesture listener for detecting swipe gestures
     private class SwipeGestureListener extends GestureDetector.SimpleOnGestureListener {
         private static final int SWIPE_THRESHOLD = 100;
         private static final int SWIPE_VELOCITY_THRESHOLD = 100;
@@ -153,7 +162,7 @@ public class Comment extends Fragment {
             float diffY = e2.getY() - e1.getY();
             float diffX = e2.getX() - e1.getX();
 
-            // Check if the swipe is vertical and downwards
+            // Check if the swipe is vertical and downward
             if (Math.abs(diffY) > Math.abs(diffX)) {
                 if (diffY > SWIPE_THRESHOLD && Math.abs(velocityY) > SWIPE_VELOCITY_THRESHOLD) {
                     // Detected swipe down - close the fragment

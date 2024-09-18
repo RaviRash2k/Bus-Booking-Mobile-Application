@@ -67,33 +67,36 @@ public class LostAndFoundAdapter extends RecyclerView.Adapter<LostAndFoundAdapte
         del = model.isDelete();
 
         //delete cards
-        if(del){
+
             holder.lostCard.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
 
-                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                    builder.setMessage("Do you want to delete this?");
+                    if(del) {
 
-                    builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            deleteEntry(model);
-                        }
-                    });
+                        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                        builder.setMessage("Do you want to delete this?");
 
-                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-                    builder.show();
+                        builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                deleteEntry(model);
+                            }
+                        });
 
-                    return true;
+                        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                        builder.show();
+
+                        return true;
+                    }
+                    return false;
                 }
             });
-        }
 
         //default like
         holder.like.setBackgroundResource(R.drawable.edit_text_background);

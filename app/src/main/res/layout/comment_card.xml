@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="15dp"
+    android:id="@+id/commentCard"
     android:layout_marginBottom="5dp"
     android:background="@drawable/menu_items_background">
 
