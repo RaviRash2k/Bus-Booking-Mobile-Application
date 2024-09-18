@@ -7,6 +7,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +16,11 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.busbookingapplication.LostAndFound.Fragment.Comment.Comment;
 import com.example.busbookingapplication.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -60,15 +63,11 @@ public class LostAndFoundAdapter extends RecyclerView.Adapter<LostAndFoundAdapte
         //get user name
         SharedPreferences sharedPreferences = context.getSharedPreferences("CurrentUser", MODE_PRIVATE);
         String userName = sharedPreferences.getString("userName", "");
-        String usertype = sharedPreferences.getString("type", "");
-
-//        String user = model.getUserName();
 
         del = model.isDelete();
 
         //delete cards
         if(del){
-
             holder.lostCard.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
@@ -96,6 +95,7 @@ public class LostAndFoundAdapter extends RecyclerView.Adapter<LostAndFoundAdapte
             });
         }
 
+        //default like
         holder.like.setBackgroundResource(R.drawable.edit_text_background);
         holder.like.setTextColor(ContextCompat.getColor(context, R.color.dark_text));
         holder.like.setText("likes " + model.getLike());
@@ -144,6 +144,25 @@ public class LostAndFoundAdapter extends RecyclerView.Adapter<LostAndFoundAdapte
             }
         });
 
+        //click comment button
+        holder.comment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Comment commentFragment = new Comment();
+
+                Bundle bundle = new Bundle();
+                bundle.putString("postId", model.getId());
+
+                commentFragment.setArguments(bundle);
+
+                ((AppCompatActivity) v.getContext()).getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, commentFragment)
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
     }
 
     private void updateLikeCount(LostAndFoundAdapter.MainViewHolder holder, DatabaseReference likesRef) {
@@ -189,7 +208,7 @@ public class LostAndFoundAdapter extends RecyclerView.Adapter<LostAndFoundAdapte
 
     public static class MainViewHolder extends RecyclerView.ViewHolder {
 
-        TextView user, message, like;
+        TextView user, message, like, comment;
         LinearLayout lostCard;
 
         public MainViewHolder(@NonNull View itemView) {
@@ -199,6 +218,7 @@ public class LostAndFoundAdapter extends RecyclerView.Adapter<LostAndFoundAdapte
             user = itemView.findViewById(R.id.user);
             lostCard = itemView.findViewById(R.id.lostCard);
             like = itemView.findViewById(R.id.like);
+            comment = itemView.findViewById(R.id.comment);
         }
     }
 }

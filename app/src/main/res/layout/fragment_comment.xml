@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#79000000"
+    tools:context=".LostAndFound.Fragment.Comment.Comment">
+
+    <!-- Main content -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/comment_background"
+        android:layout_marginTop="180dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Comments"
+            android:textColor="@color/dark_text"
+            android:textSize="16sp"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:layout_marginVertical="10dp"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/commentList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/my_bckground"
+                android:padding="7dp"/>
+
+        </ScrollView>
+
+        <TextView
+            android:id="@+id/noComment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="No comments"
+            android:textColor="@color/dark_text"
+            android:textAlignment="center"
+            android:visibility="gone"
+            android:textSize="15sp"/>
+
+    </LinearLayout>
+
+    <!-- Floating comment input at the bottom -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="@drawable/edit_text_background"
+        android:layout_margin="15dp"
+        android:gravity="center"
+        android:layout_gravity="bottom|center_horizontal">
+
+        <EditText
+            android:id="@+id/typedComment"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingStart="10dp"
+            android:hint="Write a comment..."
+            android:textColor="@color/dark_text"
+            android:textColorHint="@color/hint_text"
+            android:background="@color/transparent" />
+
+        <ImageButton
+            android:id="@+id/send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/send"
+            android:layout_marginEnd="10dp"
+            android:background="?attr/selectableItemBackground" />
+    </LinearLayout>
+
+</FrameLayout>

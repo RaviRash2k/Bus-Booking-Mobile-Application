@@ -107,24 +107,6 @@
                         <ImageView
                             android:layout_width="37dp"
                             android:layout_height="37dp"
-                            android:src="@drawable/clock"/>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textSize="17sp"
-                            android:textColor="@color/dark_text"
-                            android:layout_marginStart="12dp"
-                            android:text="History"/>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="58dp"
-                        android:orientation="horizontal"
-                        android:gravity="center">
-                        <ImageView
-                            android:layout_width="37dp"
-                            android:layout_height="37dp"
                             android:src="@drawable/setting"/>
                         <TextView
                             android:layout_width="match_parent"
