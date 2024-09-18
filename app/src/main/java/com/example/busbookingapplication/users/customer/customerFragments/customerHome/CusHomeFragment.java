@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import com.example.busbookingapplication.LostAndFound.LostAndFound;
 import com.example.busbookingapplication.R;
 import com.example.busbookingapplication.users.customer.customerFragments.customerHome.CustomerSearchedSlots.CustomerSearchSlots;
 import com.google.firebase.database.DataSnapshot;
@@ -46,7 +47,7 @@ public class CusHomeFragment extends Fragment {
     String selectedDate = null, searchDate = null, formattedSearchDate = null;
 
     TextView travelDateDay, travelDateMonYear, travelDateDate;
-    Button searchBus;
+    Button searchBus, lostNFound;
 
     private DatabaseReference databaseReference;
 
@@ -69,6 +70,15 @@ public class CusHomeFragment extends Fragment {
             public void run() {
                 updateTime();
                 handler.postDelayed(this, 1000);
+            }
+        });
+
+        //click lost and found button
+        lostNFound = rootView.findViewById(R.id.lostNFound);
+        lostNFound.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), LostAndFound.class));
             }
         });
 
@@ -234,7 +244,7 @@ public class CusHomeFragment extends Fragment {
 
                         SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE", Locale.getDefault());
                         SimpleDateFormat monthYearFormat = new SimpleDateFormat("MMMM yyyy", Locale.getDefault());
-                        SimpleDateFormat searchDateFormat = new SimpleDateFormat("dd . MM . yyyy", Locale.getDefault());
+                        SimpleDateFormat searchDateFormat = new SimpleDateFormat("dd . M . yyyy", Locale.getDefault());
 
                         String weekDay = dayFormat.format(selectedDate.getTime());
                         String monAndYear = monthYearFormat.format(selectedDate.getTime());
